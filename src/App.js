@@ -1,15 +1,17 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import DropMenu from "./components/DropMenu/index";
+import Navbar from "./components/Navbar/index";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h3>Hover dropdown menu with react hooks (V 0.01)</h3>
-        <DropMenu />
+        <h3>Hover dropdown menu with react hooks (V 0.02)</h3>
+        <div>
+          <Navbar />
+        </div>
       </header>
     </div>
   );

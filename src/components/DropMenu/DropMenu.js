@@ -1,34 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import styles from "./DropMenu.module.css";
-
-const useHover = () => {
-  const ref = useRef();
-
-  const [hovered, setHovered] = useState(false);
-  const enter = () => setHovered(true);
-  const leave = () => setHovered(false);
-
-  useEffect(() => {
-    ref.current.addEventListener("mouseenter", enter);
-    ref.current.addEventListener("mouseleave", leave);
-    return () => {
-      ref.current.removeEventListener("mouseenter", enter);
-      ref.current.removeEventListener("mouseleave", leave);
-    };
-  }, [ref]);
-  return [ref, hovered];
-};
-
-const DropMenu = () => {
+import useHover from "../../shared/Usehover/index";
+const DropMenu = ({ title, items }) => {
   const [ref, hovered] = useHover();
+
   return (
     <div ref={ref} className={styles.dropdown}>
-      <button className={styles.dropbtn}>Show menu</button>
+      <a className={styles.dropbtn}>
+        {title} <i className={styles.downArrow}></i>{" "}
+      </a>
       {hovered && (
         <div className={styles.dropdownContent}>
-          <button> Menu item 1 </button>
-          <button> Menu item 2 </button>
-          <button> Menu item 3 </button>
+          {items.map(el => {
+            return <a key={el.id}>{el.item}</a>;
+          })}
         </div>
       )}
     </div>
